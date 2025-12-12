@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>В Донбассе возможно град</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .coordinates-input {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 45%;
+            min-width: 150px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-top: 5px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .weather-result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #e3f2fd;
+            display: none; 
+        }
+        .error {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: none; 
+        }
+        .loading {
+            color: #1976d2;
+            font-weight: bold;
+            margin: 20px 0;
+            display: none; 
+        }
+        .temp {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1a237e;
+            margin: 15px 0;
+        }
+        .details {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            text-align: center;
+        }
+        @media (max-width: 480px) {
+            .coordinates-input {
+                flex-direction: column;
+            }
+            input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="coordinates-input">
+            <input type="number" id="latitude" step="any" placeholder="Широта (55.75)">
+            <input type="number" id="longitude" step="any" placeholder="Долгота (37.62)">
+        </div>
+        
+        <button id="get-weather">Показать погоду</button>
+        
+        <div id="loading" class="loading">Загрузка погоды...</div>
+        <div id="error" class="error"></div>
+        
+        <div id="weather-result" class="weather-result">
+            <div class="location">📍 Координаты: <span id="coords-display"></span></div>
+            <div class="temp" id="temperature">--°C</div>
+            <div class="condition" id="weather-desc">Выберите координаты</div>
+            <div class="details">
+                <div class="wind">💨 <span id="wind-speed">--</span> м/с</div>
+                <div class="timezone">⏰ <span id="local-time"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
